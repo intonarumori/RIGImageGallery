@@ -66,7 +66,7 @@ private extension ViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    func actionButtonHandler(_: RIGImageGalleryViewController, galleryItem: RIGImageGalleryItem) {
+    func actionButtonHandler(_: RIGImageGalleryViewController, galleryItem: RIGImageGalleryItemType) {
     }
 
     func updateCount(_ gallery: RIGImageGalleryViewController, position: Int, total: Int) {
@@ -96,7 +96,7 @@ private extension ViewController {
         let urls = type(of: self).urls
 
         let rigItems = urls.map { _ in
-            RIGImageGalleryItem(placeholderImage: UIImage(named: "placeholder") ?? UIImage())
+            ImageGalleryItem(placeholderImage: UIImage(named: "placeholder") ?? UIImage())
         }
 
         let rigController = RIGImageGalleryViewController(images: rigItems)
@@ -137,3 +137,20 @@ private extension RIGImageGalleryViewController {
         }
     }
 }
+
+// MARK: -
+
+public struct ImageGalleryItem: RIGImageGalleryItemType {
+    
+    public var image: UIImage?
+    public var placeholderImage: UIImage?
+    public var title: String?
+    
+    public init(image: UIImage? = nil, placeholderImage: UIImage? = nil, title: String? = nil) {
+        self.image = image
+        self.placeholderImage = placeholderImage
+        self.title = title
+    }
+}
+
+

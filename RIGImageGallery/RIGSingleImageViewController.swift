@@ -10,7 +10,9 @@ import UIKit
 
 class RIGSingleImageViewController: UIViewController {
 
-    var viewerItem: RIGImageGalleryItem? {
+    let index: Int
+    
+    var viewerItem: RIGImageGalleryItemType? {
         didSet {
             viewerItemUpdated()
         }
@@ -18,12 +20,21 @@ class RIGSingleImageViewController: UIViewController {
 
     let scrollView = RIGAutoCenteringScrollView()
 
-    convenience init(viewerItem: RIGImageGalleryItem) {
-        self.init()
+    required init(viewerItem: RIGImageGalleryItemType, index:Int) {
+        self.index = index
+        
+        super.init(nibName: nil, bundle: nil)
+        
         self.viewerItem = viewerItem
         viewerItemUpdated()
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: -
+    
     override func loadView() {
         automaticallyAdjustsScrollViewInsets = false
         view = scrollView

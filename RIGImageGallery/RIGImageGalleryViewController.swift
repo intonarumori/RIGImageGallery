@@ -11,7 +11,7 @@ import UIKit
 open class RIGImageGalleryViewController: UIPageViewController {
 
     public typealias GalleryPositionUpdateHandler = (_ gallery: RIGImageGalleryViewController, _ position: Int, _ total: Int) -> ()
-    public typealias ActionButtonPressedHandler = (_ gallery: RIGImageGalleryViewController, _ item: RIGImageGalleryItem) -> ()
+    public typealias ActionButtonPressedHandler = (_ gallery: RIGImageGalleryViewController, _ item: RIGImageGalleryItemType) -> ()
     public typealias GalleryEventHandler = (RIGImageGalleryViewController) -> ()
     public typealias IndexUpdateHandler = (Int) -> ()
 
@@ -39,7 +39,7 @@ open class RIGImageGalleryViewController: UIPageViewController {
     }
 
     /// The array of images to display. The view controller will automatically handle updates
-    open var images: [RIGImageGalleryItem] = [] {
+    open var images: [RIGImageGalleryItemType] = [] {
         didSet {
             handleImagesUpdate(oldValue: oldValue)
         }
@@ -87,7 +87,8 @@ open class RIGImageGalleryViewController: UIPageViewController {
             setViewControllers([UIViewController()], direction: .forward, animated: animated, completion: nil)
             return
         }
-        let newView = RIGSingleImageViewController(viewerItem: images[currentImage])
+        let newView = RIGSingleImageViewController(viewerItem: images[currentImage], index: currentImage)
+        
         let direction: UIPageViewControllerNavigationDirection
         if self.currentImage < currentImage {
             direction = .forward
@@ -119,7 +120,7 @@ open class RIGImageGalleryViewController: UIPageViewController {
 
      - parameter images: The images to use in the gallery
      */
-    public convenience init(images: [RIGImageGalleryItem]) {
+    public convenience init(images: [RIGImageGalleryItemType]) {
         self.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewControllerOptionInterPageSpacingKey: 20])
         self.images = images
     }
@@ -163,7 +164,7 @@ open class RIGImageGalleryViewController: UIPageViewController {
         super.viewWillAppear(animated)
         updateBarStatus(animated: false)
         if currentImage < images.count {
-            let photoPage =  RIGSingleImageViewController(viewerItem: images[currentImage])
+            let photoPage =  RIGSingleImageViewController(viewerItem: images[currentImage], index: currentImage)
             setViewControllers([photoPage], direction: .forward, animated: false, completion: nil)
         }
     }
@@ -238,7 +239,7 @@ extension RIGImageGalleryViewController: UIPageViewControllerDataSource {
         guard let index = indexOf(viewController: viewController), index < images.count - 1 else {
             return nil
         }
-        let zoomView = RIGSingleImageViewController(viewerItem: images[index + 1])
+        let zoomView = RIGSingleImageViewController(viewerItem: images[index + 1], index: index + 1)
         return zoomView
     }
 
@@ -246,7 +247,7 @@ extension RIGImageGalleryViewController: UIPageViewControllerDataSource {
         guard let index = indexOf(viewController: viewController), index > 0 else {
             return nil
         }
-        let zoomView = RIGSingleImageViewController(viewerItem: images[index - 1])
+        let zoomView = RIGSingleImageViewController(viewerItem: images[index - 1], index: index - 1)
         return zoomView
     }
 
@@ -273,11 +274,11 @@ extension RIGImageGalleryViewController: UIPageViewControllerDelegate {
 
 private extension RIGImageGalleryViewController {
 
-    func indexOf(viewController: UIViewController, imagesArray: [RIGImageGalleryItem]? = nil) -> Int? {
-        guard let item = (viewController as? RIGSingleImageViewController)?.viewerItem else {
+    func indexOf(viewController: UIViewController, imagesArray: [RIGImageGalleryItemType]? = nil) -> Int? {
+        guard let singleImageViewController = (viewController as? RIGSingleImageViewController) else {
             return nil
         }
-        return (imagesArray ?? images).index(of: item)
+        return singleImageViewController.index
     }
 
     func configureDoneButton() {
@@ -301,7 +302,7 @@ private extension RIGImageGalleryViewController {
         })
     }
 
-    func handleImagesUpdate(oldValue: [RIGImageGalleryItem]) {
+    func handleImagesUpdate(oldValue: [RIGImageGalleryItemType]) {
         for viewController in childViewControllers {
             if let index = indexOf(viewController: viewController, imagesArray: oldValue),
                 let childView = viewController as? RIGSingleImageViewController, index < images.count {

@@ -20,7 +20,7 @@
 		72BA265A1C6B985900F1FE22 /* RIGImageGallery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 72BA26521C6B985900F1FE22 /* RIGImageGallery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		72BA26621C6B987200F1FE22 /* RIGAutoCenteringScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BA265E1C6B987200F1FE22 /* RIGAutoCenteringScrollView.swift */; };
 		72BA26631C6B987200F1FE22 /* RIGImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BA265F1C6B987200F1FE22 /* RIGImageGalleryViewController.swift */; };
-		72BA26641C6B987200F1FE22 /* RIGImageGalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BA26601C6B987200F1FE22 /* RIGImageGalleryItem.swift */; };
+		72BA26641C6B987200F1FE22 /* RIGImageGalleryItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BA26601C6B987200F1FE22 /* RIGImageGalleryItemType.swift */; };
 		72BA26651C6B987200F1FE22 /* RIGSingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BA26611C6B987200F1FE22 /* RIGSingleImageViewController.swift */; };
 		72FE02CC1D356C8500738265 /* SingleImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE02CB1D356C8500738265 /* SingleImageViewControllerTests.swift */; };
 /* End PBXBuildFile section */
@@ -73,7 +73,7 @@
 		72BA26561C6B985900F1FE22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72BA265E1C6B987200F1FE22 /* RIGAutoCenteringScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RIGAutoCenteringScrollView.swift; sourceTree = "<group>"; };
 		72BA265F1C6B987200F1FE22 /* RIGImageGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RIGImageGalleryViewController.swift; sourceTree = "<group>"; };
-		72BA26601C6B987200F1FE22 /* RIGImageGalleryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RIGImageGalleryItem.swift; sourceTree = "<group>"; };
+		72BA26601C6B987200F1FE22 /* RIGImageGalleryItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RIGImageGalleryItemType.swift; sourceTree = "<group>"; };
 		72BA26611C6B987200F1FE22 /* RIGSingleImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RIGSingleImageViewController.swift; sourceTree = "<group>"; };
 		72FE02CB1D356C8500738265 /* SingleImageViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,7 +160,7 @@
 			children = (
 				72E3A5BF1D2FE52100E9C023 /* Assets */,
 				72BA265E1C6B987200F1FE22 /* RIGAutoCenteringScrollView.swift */,
-				72BA26601C6B987200F1FE22 /* RIGImageGalleryItem.swift */,
+				72BA26601C6B987200F1FE22 /* RIGImageGalleryItemType.swift */,
 				72BA265F1C6B987200F1FE22 /* RIGImageGalleryViewController.swift */,
 				72BA26611C6B987200F1FE22 /* RIGSingleImageViewController.swift */,
 			);
@@ -402,7 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72BA26631C6B987200F1FE22 /* RIGImageGalleryViewController.swift in Sources */,
-				72BA26641C6B987200F1FE22 /* RIGImageGalleryItem.swift in Sources */,
+				72BA26641C6B987200F1FE22 /* RIGImageGalleryItemType.swift in Sources */,
 				72BA26621C6B987200F1FE22 /* RIGAutoCenteringScrollView.swift in Sources */,
 				72BA26651C6B987200F1FE22 /* RIGSingleImageViewController.swift in Sources */,
 			);
